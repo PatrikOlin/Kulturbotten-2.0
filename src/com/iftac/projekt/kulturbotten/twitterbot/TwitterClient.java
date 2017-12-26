@@ -4,16 +4,21 @@ import twitter4j.*;
 import twitter4j.auth.AccessToken;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
+
+import com.iftac.projekt.kulturbotten.Tweet;
+
 public class TwitterClient {
-	
+
 	private String consumerKey = null;
 	private String consumerSecret = null;
 	private String accessToken = null;
 	private String accessTokenSecret = null;
-	
+
 	public String getConsumerKey() {
 		return consumerKey;
 	}
@@ -49,23 +54,24 @@ public class TwitterClient {
 	public void readFile(String filename) {
 		try {
 			Scanner reader = new Scanner(new File(filename));
-			
-			while(reader.hasNextLine()) {
+
+			while (reader.hasNextLine()) {
 				setConsumerKey(reader.next());
 				setConsumerSecret(reader.next());
 				setAccessToken(reader.next());
 				setAccessTokenSecret(reader.next());
 			}
-			
+
 			reader.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void BotTweet(String tweet) throws TwitterException {
+	public void BotTweet(Tweet tweet) throws TwitterException, IOException {
 
-		File file = new File("image.png");
+		File outputFile = new File("image.jpg");
+		ImageIO.write(tweet.getPhoto(), "jpg", outputFile);
 		TwitterFactory twitterFactory = new TwitterFactory();
 
 		Twitter twitter = twitterFactory.getInstance();
@@ -73,9 +79,9 @@ public class TwitterClient {
 		twitter.setOAuthConsumer(getConsumerKey(), getConsumerSecret());
 		twitter.setOAuthAccessToken(new AccessToken(getAccessToken(), getAccessTokenSecret()));
 
-		StatusUpdate statusUpdate = new StatusUpdate(tweet);
+		StatusUpdate statusUpdate = new StatusUpdate(tweet.getTitle() + "\n" + tweet.getDescription());
 
-		statusUpdate.setMedia(file);
+		statusUpdate.setMedia(outputFile);
 
 		Status status = twitter.updateStatus(statusUpdate);
 
