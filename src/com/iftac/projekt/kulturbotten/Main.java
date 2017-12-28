@@ -2,6 +2,8 @@ package com.iftac.projekt.kulturbotten;
 
 import java.io.IOException;
 
+import com.iftac.projekt.kulturbotten.com.iftac.projekt.kulturbotten.Tweet;
+import com.iftac.projekt.kulturbotten.com.iftac.projekt.kulturbotten.TweetDAO;
 import com.iftac.projekt.kulturbotten.dbconnection.MuseumConnectionFactory;
 import com.iftac.projekt.kulturbotten.twitterbot.TwitterClient;
 

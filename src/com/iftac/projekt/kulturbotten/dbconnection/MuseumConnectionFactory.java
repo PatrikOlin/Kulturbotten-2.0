@@ -34,7 +34,7 @@ private static MuseumConnectionFactory instance;
 	  
 	        // Skapar connection till databasen
 	        return DriverManager.getConnection("jdbc:mysql://localhost/museum?" +
-		                       "user=root&password=123456&useSSL=false");
+		                       "user=root&password=12345&useSSL=false");
 		}catch(SQLException e){
 			System.out.println("Unable to connect to database");
 			e.printStackTrace();

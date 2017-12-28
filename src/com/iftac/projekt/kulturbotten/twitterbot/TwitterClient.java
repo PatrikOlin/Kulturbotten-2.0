@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 
-import com.iftac.projekt.kulturbotten.Tweet;
+import com.iftac.projekt.kulturbotten.com.iftac.projekt.kulturbotten.Tweet;
 
 public class TwitterClient {
 
