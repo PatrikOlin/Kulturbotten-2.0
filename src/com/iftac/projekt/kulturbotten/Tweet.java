@@ -1,6 +1,7 @@
 package com.iftac.projekt.kulturbotten;
 
 import java.awt.image.BufferedImage;
+import com.google.common.base.*;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -9,8 +10,6 @@ import javax.imageio.ImageIO;
 
 public class Tweet {
 	
-	
-
 
 	private int id;
 	private String title;
@@ -20,8 +19,6 @@ public class Tweet {
 	
 	private static Tweet instance;
 	
-
-
 
 private Tweet(){}
     
@@ -50,7 +47,7 @@ private Tweet(){}
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.description = Ascii.truncate(description, 200, "...");
 	}
 
 	public BufferedImage getPhoto() {
@@ -112,5 +109,5 @@ private Tweet(){}
 	public void setImageURL(String imageURL) {
 		this.imageURL = imageURL;
 	}
-
+	
 }

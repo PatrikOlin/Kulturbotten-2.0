@@ -14,6 +14,8 @@ public class Main {
 		MuseumConnectionFactory mcf = MuseumConnectionFactory.getInstance();
 
 		TweetDAO tweetDAO = new TweetDAO(mcf);
+		tweetDAO.scanCompleteFile();
+		tweetDAO.scanCurrentFile();
 
 		TwitterClient twitterClient = new TwitterClient();
 

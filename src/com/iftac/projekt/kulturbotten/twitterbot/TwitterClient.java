@@ -79,7 +79,7 @@ public class TwitterClient {
 		twitter.setOAuthConsumer(getConsumerKey(), getConsumerSecret());
 		twitter.setOAuthAccessToken(new AccessToken(getAccessToken(), getAccessTokenSecret()));
 
-		StatusUpdate statusUpdate = new StatusUpdate(tweet.getTitle().toUpperCase() + "\n\n" + tweet.getDescription() + "\n\n"	+ "url:" + tweet.getImageURL());
+		StatusUpdate statusUpdate = new StatusUpdate(tweet.getTitle().toUpperCase() + "\n\n" + tweet.getDescription() + "\n\n" + tweet.getImageURL());
 
 		statusUpdate.setMedia(outputFile);
 

@@ -2,7 +2,8 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/student267/Desktop/Java Jars/Kulturbotten/twitter4j-core-4.0.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/student267/Desktop/Java Jars/Kulturbotten/mysql-connector-java-5.1.45-bin.jar"/>
+	<classpathentry kind="lib" path="C:/java/libs/twitter4j-core-4.0.4.jar"/>
+	<classpathentry kind="lib" path="C:/java/libs/mysql-connector-java-5.1.44/mysql-connector-java-5.1.44-bin.jar"/>
+	<classpathentry kind="lib" path="C:/java/libs/guava-23.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
