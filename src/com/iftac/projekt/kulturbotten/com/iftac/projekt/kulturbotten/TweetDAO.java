@@ -2,12 +2,15 @@ package com.iftac.projekt.kulturbotten.com.iftac.projekt.kulturbotten;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
@@ -58,28 +61,7 @@ public class TweetDAO {
 			}
 
 			Random randomGenerator = new Random();
-			int index = 0;
-
-			boolean idCheck = true;
-			while (idCheck == true) {
-				index = randomGenerator.nextInt(IDs.size());
-				if (currentList.contains(index)) {
-					idCheck = true;
-
-				} else {
-					idCheck = false;
-					currentList.add(index);
-					Collections.sort(currentList);
-					
-					PrintWriter outputFile = new PrintWriter(new File("CurrentList.txt"));
-					for (int i = 0; i < currentList.size(); i++) {
-						outputFile.write(currentList.get(i));
-					}
-
-					
-					
-				}
-			}
+			int index = randomGenerator.nextInt(IDs.size());
 			int randomID = IDs.get(index);
 
 			stmt = connection.prepareStatement("Select * FROM art WHERE ID = ?;");
@@ -150,6 +132,36 @@ public class TweetDAO {
 			currentList.add(sc.nextInt());
 		}
 		sc.close();
+	}
+
+	public boolean checkIfTweeted(int id) throws IOException {
+
+		if (currentList.contains(id)) {
+			System.out.println("Nu blev det sant");
+			return true;
+		}
+		currentList.add(id);
+		Collections.sort(currentList);
+		writeToFile(currentList);
+
+		return false;
+
+	}
+
+	public void writeToFile(ArrayList<Integer> currentList) throws IOException {
+		FileWriter writer = new FileWriter("CurrentList.txt");
+		for (int i = 0; i < currentList.size(); i++) {
+			writer.write(currentList.get(i).toString());
+			writer.write(System.lineSeparator());
+		}
+		writer.close();
+	}
+
+	public boolean compareLists() {
+		if (Arrays.asList(completeList).equals(Arrays.asList(currentList))) {
+			return true;
+		}
+		return false;
 	}
 
 }

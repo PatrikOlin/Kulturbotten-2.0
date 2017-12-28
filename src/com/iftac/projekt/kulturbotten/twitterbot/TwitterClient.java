@@ -68,7 +68,7 @@ public class TwitterClient {
 		}
 	}
 
-	public void BotTweet(Tweet tweet) throws TwitterException, IOException {
+	public void botTweet(Tweet tweet) throws TwitterException, IOException {
 
 		File outputFile = new File("cachedImage.png");
 		ImageIO.write(tweet.getPhoto(), "png", outputFile);

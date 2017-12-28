@@ -9,35 +9,34 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 public class Tweet {
-	
 
 	private int id;
 	private String title;
 	private String description;
 	private BufferedImage image;
 	private String imageURL;
-	
-	private static Tweet instance;
-	
 
-private Tweet(){}
-    
-    public static synchronized Tweet getInstance(){
-        if(instance == null){
-            instance = new Tweet();
-        }
-        return instance;
-    }
-    
+	private static Tweet instance;
+
+	private Tweet() {
+	}
+
+	public static synchronized Tweet getInstance() {
+		if (instance == null) {
+			instance = new Tweet();
+		}
+		return instance;
+	}
+
 	@Override
 	public String toString() {
-		
+
 		boolean hasImage = false;
-		
-		if(!(image == null)) {
+
+		if (!(image == null)) {
 			hasImage = true;
 		}
-		
+
 		return "Tweet [id=" + id + ", title=" + title + ", description=" + description + ", image=" + hasImage
 				+ ", imageURL=" + imageURL + "]";
 	}
@@ -51,7 +50,7 @@ private Tweet(){}
 	}
 
 	public BufferedImage getPhoto() {
-		
+
 		BufferedImage imageInPng = null;
 		try {
 			imageInPng = ImageIO.read(new File("cachedImage.png"));
@@ -59,30 +58,27 @@ private Tweet(){}
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return imageInPng;
 	}
 
 	public void setPhoto(byte[] b) {
-		
-		BufferedImage bImage = null; 
+
+		BufferedImage bImage = null;
 		byte[] imageInByte = b;
-		
-		
+
 		try {
 
 			// convert byte to BufferedImage
 			InputStream in = new ByteArrayInputStream(imageInByte);
 			bImage = ImageIO.read(in);
 
-			ImageIO.write(bImage, "png", new File(
-					"cachedImage.png"));
+			ImageIO.write(bImage, "png", new File("cachedImage.png"));
 
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
-		
-		
+
 		this.image = bImage;
 	}
 
@@ -109,5 +105,5 @@ private Tweet(){}
 	public void setImageURL(String imageURL) {
 		this.imageURL = imageURL;
 	}
-	
+
 }

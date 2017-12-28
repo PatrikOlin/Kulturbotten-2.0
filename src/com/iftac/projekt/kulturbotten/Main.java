@@ -1,5 +1,6 @@
 package com.iftac.projekt.kulturbotten;
 
+import java.io.FileWriter;
 import java.io.IOException;
 
 import com.iftac.projekt.kulturbotten.com.iftac.projekt.kulturbotten.Tweet;
@@ -21,10 +22,19 @@ public class Main {
 
 		TwitterClient twitterClient = new TwitterClient();
 
-		Tweet outputTweet = tweetDAO.createRandomTweet();
+		Tweet tweet = null;
+		if (tweetDAO.compareLists()) {
+			FileWriter writer = new FileWriter("CurrentList.txt");
+			writer.write("");
+			tweetDAO.scanCurrentFile();
+			writer.close();
+		}
+		do {
+			tweet = tweetDAO.createRandomTweet();
+		} while (tweetDAO.checkIfTweeted(tweet.getID()));
 
 		twitterClient.readFile("keylist.txt");
-		twitterClient.BotTweet(outputTweet);
+		twitterClient.botTweet(tweet);
 	}
 
 }
