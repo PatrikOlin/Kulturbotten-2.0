@@ -70,8 +70,8 @@ public class TwitterClient {
 
 	public void BotTweet(Tweet tweet) throws TwitterException, IOException {
 
-		File outputFile = new File("image.jpg");
-		ImageIO.write(tweet.getPhoto(), "jpg", outputFile);
+		File outputFile = new File("cachedImage.png");
+		ImageIO.write(tweet.getPhoto(), "png", outputFile);
 		TwitterFactory twitterFactory = new TwitterFactory();
 
 		Twitter twitter = twitterFactory.getInstance();
@@ -79,7 +79,7 @@ public class TwitterClient {
 		twitter.setOAuthConsumer(getConsumerKey(), getConsumerSecret());
 		twitter.setOAuthAccessToken(new AccessToken(getAccessToken(), getAccessTokenSecret()));
 
-		StatusUpdate statusUpdate = new StatusUpdate(tweet.getTitle() + "\n" + tweet.getDescription());
+		StatusUpdate statusUpdate = new StatusUpdate(tweet.getTitle().toUpperCase() + "\n\n" + tweet.getDescription() + "\n\n"	+ "url:" + tweet.getImageURL());
 
 		statusUpdate.setMedia(outputFile);
 

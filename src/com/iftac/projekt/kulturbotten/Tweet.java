@@ -55,15 +55,15 @@ private Tweet(){}
 
 	public BufferedImage getPhoto() {
 		
-		BufferedImage imageInJpeg = null;
+		BufferedImage imageInPng = null;
 		try {
-			imageInJpeg = ImageIO.read(new File("cachedImage.jpg"));
+			imageInPng = ImageIO.read(new File("cachedImage.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return imageInJpeg;
+		return imageInPng;
 	}
 
 	public void setPhoto(byte[] b) {
@@ -78,8 +78,8 @@ private Tweet(){}
 			InputStream in = new ByteArrayInputStream(imageInByte);
 			bImage = ImageIO.read(in);
 
-			ImageIO.write(bImage, "jpg", new File(
-					"cachedImage.jpg"));
+			ImageIO.write(bImage, "png", new File(
+					"cachedImage.png"));
 
 		} catch (IOException e) {
 			System.out.println(e.getMessage());

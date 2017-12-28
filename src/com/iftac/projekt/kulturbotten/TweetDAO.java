@@ -28,6 +28,7 @@ public class TweetDAO {
         return instance;
     }
 	
+	@SuppressWarnings("resource")
 	public Tweet createRandomTweet() {
 		
 		ResultSet rs = null;
